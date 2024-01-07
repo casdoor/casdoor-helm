@@ -34,8 +34,9 @@ jobs:
       - name: Release Helm Chart
         run: |
           REGISTRY=oci://registry-1.docker.io/casbin
+          cd charts/casdoor
           helm package .
           PKG_NAME=$(ls *.tgz)
-          helm repo index charts/casdoor --url $REGISTRY --merge index.yaml
+          helm repo index . --url $REGISTRY --merge index.yaml
           helm push $PKG_NAME $REGISTRY
           rm $PKG_NAME
