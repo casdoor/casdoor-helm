@@ -1,8 +1,26 @@
 {
   "name": "casdoor",
+  "description": "Casdoor Helm Chart",
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "semantic-release": "^22.0.5"
+    "semantic-release": "^22.0.5",
+    "semantic-release-helm": "^2.2.0"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/git",
+      [
+        "semantic-release-helm",
+        {
+          "chartPath": "./charts"
+        }
+      ]
+    ]
   }
 }
