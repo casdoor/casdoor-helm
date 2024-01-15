@@ -1,5 +1,3 @@
-# Charts
+# Casdoor Helm Charts
 
-### Casdoor
-
-* [Getting started](https://casdoor.org/docs/basic/try-with-helm)
+Docs: https://casdoor.org/docs/basic/try-with-helm
