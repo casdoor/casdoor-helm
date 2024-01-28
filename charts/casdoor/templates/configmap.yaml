@@ -5,4 +5,5 @@ metadata:
   labels:
     {{- include "casdoor.labels" . | nindent 4 }}
 data:
-  app.conf: {{ tpl .Values.config . | toYaml | nindent 4 }}
+  app.conf: |
+    {{- tpl .Values.config . | nindent 4 }}

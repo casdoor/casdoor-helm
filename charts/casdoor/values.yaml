@@ -18,9 +18,9 @@ config: |
   runmode = dev
   SessionOn = true
   copyrequestbody = true
-  driverName = sqlite
-  dataSourceName = "file:ent?mode=memory&cache=shared&_fk=1"
-  dbName = casdoor
+  driverName = {{ .Values.database.driver }}
+  dataSourceName = {{ include "casdoor.dataSourceName" . }}
+  dbName = {{ include "casdoor.dbName" . }}
   redisEndpoint =
   defaultStorageProvider =
   isCloudIntranet = false
@@ -31,6 +31,20 @@ config: |
   logPostOnly = true
   origin =
   enableGzip = true
+
+database:
+  # Supports mysql, postgres, cockroachdb, sqlite3
+  driver: sqlite3
+
+  user: ""
+  password: ""
+  host: ""
+  # If port is empty, default port will be used.
+  # mysql: 3306, postgres: 5432, cockroachdb: 26257
+  port: ""
+  databaseName: casdoor
+
+  sslMode: disable
 
 imagePullSecrets: []
 nameOverride: ""
