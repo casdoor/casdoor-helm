@@ -67,7 +67,7 @@ Create dataSourceName used in the configmap
 {{- define "casdoor.dataSourceName" -}}
 {{- if eq .Values.database.driver "mysql" -}}
 {{ .Values.database.user }}:{{ .Values.database.password }}@tcp({{ .Values.database.host }}:{{ default "3306" .Values.database.port }})/
-{{- else if eq .Values.database.driver "postgresql" -}}
+{{- else if eq .Values.database.driver "postgres" -}}
 "user={{ .Values.database.user }} password={{ .Values.database.password }} host={{ .Values.database.host }} port={{ default "5432" .Values.database.port }} dbname={{ .Values.database.databaseName }} sslmode={{ .Values.database.sslMode }}"
 {{- else if eq .Values.database.driver "cockroachdb" -}}
 "user={{ .Values.database.user }} password={{ .Values.database.password }} host={{ .Values.database.host }} port={{ default "26257" .Values.database.port }} dbname={{ .Values.database.databaseName }} sslmode={{ .Values.database.sslMode }} serial_normalization=virtual_sequence"
@@ -82,7 +82,7 @@ Create dbName used in the configmap
 {{- define "casdoor.dbName" -}}
 {{- if eq .Values.database.driver "mysql" -}}
 {{ .Values.database.databaseName }}
-{{- else if eq .Values.database.driver "postgresql" -}}
+{{- else if eq .Values.database.driver "postgres" -}}
 {{- else if eq .Values.database.driver "cockroachdb" -}}
 {{- else -}}
 {{ .Values.database.databaseName }}

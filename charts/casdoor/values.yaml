@@ -33,14 +33,14 @@ config: |
   enableGzip = true
 
 database:
-  # Supports mysql, postgresql, cockroachdb, sqlite3
+  # Supports mysql, postgres, cockroachdb, sqlite3
   driver: sqlite3
 
   user: ""
   password: ""
   host: ""
   # If port is empty, default port will be used.
-  # mysql: 3306, postgresql: 5432, cockroachdb: 26257
+  # mysql: 3306, postgres: 5432, cockroachdb: 26257
   port: ""
   databaseName: casdoor
 
