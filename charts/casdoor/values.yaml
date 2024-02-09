@@ -141,3 +141,9 @@ envFromConfigmap: []
   # - name: ENV_NAME
   #   configmapName: test-cm
   #   key: key_name
+
+envFrom: []
+  # - type: configmap
+  #   name: test-cm
+  # - type: secret
+  #   name: test-secret

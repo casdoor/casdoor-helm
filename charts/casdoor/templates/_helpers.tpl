@@ -113,4 +113,20 @@ Create EnvfromSecret
       name: {{ .secretName }}
       key: {{ .key }}
 {{- end -}}
-{{- end }}
+{{- end -}}
+
+{{/*
+Create Envfrom
+*/}}
+{{- define "casdoor.envFrom" -}}
+{{- range . -}}
+{{- if eq .type "configmap" -}}
+- configMapRef:
+    name: {{ .name }}
+{{ end }}
+{{- if eq .type "secret" -}}
+- secretRef:
+    name: {{ .name }}
+{{- end -}}
+{{- end -}}
+{{- end -}}

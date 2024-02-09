@@ -44,6 +44,10 @@ spec:
           {{ if .Values.envFromConfigmap }}
             {{ include "casdoor.envFromConfigmap" .Values.envFromConfigmap | indent 12 | trim }}
           {{- end }}
+          {{- if .Values.envFrom }}
+          envFrom:
+            {{ include "casdoor.envFrom" .Values.envFrom | indent 12 | trim }}
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
