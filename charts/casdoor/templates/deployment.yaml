@@ -38,6 +38,12 @@ spec:
           env:
             - name: RUNNING_IN_DOCKER
               value: "true"
+          {{- if .Values.envFromSecret }}
+            {{ include "casdoor.envFromSecret" .Values.envFromSecret | indent 12 | trim }}
+          {{- end -}}
+          {{ if .Values.envFromConfigmap }}
+            {{ include "casdoor.envFromConfigmap" .Values.envFromConfigmap | indent 12 | trim }}
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

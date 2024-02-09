@@ -88,3 +88,29 @@ Create dbName used in the configmap
 {{ .Values.database.databaseName }}
 {{- end }}
 {{- end }}
+
+{{/*
+Create EnvfromConfigmap
+*/}}
+{{- define "casdoor.envFromConfigmap" -}}
+{{- range . -}}
+- name: {{ .name }}
+  valueFrom:
+    configMapKeyRef:
+      name: {{ .configmapName }}
+      key: {{ .key }}
+{{- end -}}
+{{- end }}
+
+{{/*
+Create EnvfromSecret
+*/}}
+{{- define "casdoor.envFromSecret" -}}
+{{- range . -}}
+- name: {{ .name }}
+  valueFrom:
+    secretKeyRef:
+      name: {{ .secretName }}
+      key: {{ .key }}
+{{- end -}}
+{{- end }}
