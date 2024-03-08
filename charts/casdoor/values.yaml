@@ -47,7 +47,7 @@ database:
   sslMode: disable
 
 imagePullSecrets: []
-nameOverride: ""
+nameOverride: casdoor
 fullnameOverride: ""
 
 serviceAccount:
