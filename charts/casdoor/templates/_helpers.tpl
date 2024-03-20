@@ -72,7 +72,7 @@ Create dataSourceName used in the configmap
 {{- else if eq .Values.database.driver "cockroachdb" -}}
 "user={{ .Values.database.user }} password={{ .Values.database.password }} host={{ .Values.database.host }} port={{ default "26257" .Values.database.port }} dbname={{ .Values.database.databaseName }} sslmode={{ .Values.database.sslMode }} serial_normalization=virtual_sequence"
 {{- else -}}
-file:casdoor.db?cache=shared
+file:ent?mode=memory&cache=shared&_fk=1
 {{- end }}
 {{- end }}
 
