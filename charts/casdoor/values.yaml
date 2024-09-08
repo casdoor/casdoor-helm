@@ -123,6 +123,13 @@ tolerations: []
 
 affinity: {}
 
+# -- Optionally add init containers.
+initContainersEnabled: false
+initContainers: ""
+# initContainers: |
+#  - name: ...
+#    image: ...
+
 # -- Optionally add extra sidecar containers.
 extraContainersEnabled: false
 extraContainers: ""

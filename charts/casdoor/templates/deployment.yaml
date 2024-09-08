@@ -28,6 +28,10 @@ spec:
       serviceAccountName: {{ include "casdoor.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        {{ if .Values.initContainersEnabled }}
+          {{- .Values.initContainers | nindent 6 }}
+        {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
