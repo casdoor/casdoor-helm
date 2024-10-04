@@ -34,8 +34,8 @@ config: |
   ldapServerPort = 10389
 
 database:
-  # Supports mysql, postgres, cockroachdb, sqlite3
-  driver: sqlite3
+  # Supports mysql, postgres, cockroachdb, sqlite
+  driver: sqlite
 
   user: ""
   password: ""
