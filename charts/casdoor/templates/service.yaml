@@ -13,7 +13,7 @@ spec:
       name: http
     {{- if .Values.ldap.enabled }}
     - port: {{ .Values.ldap.service.port }}
-      targetPort: http
+      targetPort: 10389
       protocol: TCP
       name: ldap
     {{- end }}
