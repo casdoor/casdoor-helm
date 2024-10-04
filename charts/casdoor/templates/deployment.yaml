@@ -56,7 +56,12 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          {{ if .Values.probe.liveness.enabled }}
+            {{- if .Values.ldap.enabled }}
+            - name: ldap
+              containerPort: {{ .Values.ldap.service.port }}
+              protocol: TCP
+            {{- end }}
+          {{- if .Values.probe.liveness.enabled }}
           livenessProbe:
             httpGet:
               path: /

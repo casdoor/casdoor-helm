@@ -31,6 +31,7 @@ config: |
   logPostOnly = true
   origin =
   enableGzip = true
+  ldapServerPort = {{ .Values.ldap.service.port }}
 
 database:
   # Supports mysql, postgres, cockroachdb, sqlite3
@@ -45,6 +46,11 @@ database:
   databaseName: casdoor
 
   sslMode: disable
+
+ldap:
+  enabled: false
+  service:
+    port: 10389
 
 imagePullSecrets: []
 nameOverride: casdoor

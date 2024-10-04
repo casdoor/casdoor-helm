@@ -11,5 +11,11 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    {{- if .Values.ldap.enabled }}
+    - port: {{ .Values.ldap.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: ldap
+    {{- end }}
   selector:
     {{- include "casdoor.selectorLabels" . | nindent 4 }}
