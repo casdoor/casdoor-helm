@@ -10,6 +10,9 @@ spec:
     - port: {{ .Values.service.port }}
       targetPort: http
       protocol: TCP
+    {{- if .Values.service.nodePort }}
+      nodePort: {{ .Values.service.nodePort }}
+    {{- end }}
       name: http
     {{- if .Values.ldap.enabled }}
     - port: {{ .Values.ldap.service.port }}
