@@ -160,3 +160,5 @@ envFrom: []
   #   name: test-cm
   # - type: secret
   #   name: test-secret
+
+priorityClassName: ""
