@@ -32,6 +32,9 @@ spec:
         {{ if .Values.initContainersEnabled }}
           {{- .Values.initContainers | nindent 6 }}
         {{- end }}
+      {{- if .Values.priorityClassName }}
+      priorityClassName: {{ .Values.priorityClassName | quote }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
