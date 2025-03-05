@@ -92,11 +92,19 @@ spec:
           projected:
             defaultMode: 420
             sources:
+            {{- if .Values.configFromSecret }}
+              - secret:
+                  secretName: {{ .Values.configFromSecret }}
+                  items:
+                    - key: app.conf
+                      path: app.conf
+            {{- else }}
               - configMap:
                   name: {{ printf "%s-config" (include "casdoor.fullname" .) }}
                   items:
                     - key: app.conf
                       path: app.conf
+            {{- end }}
         {{- if .Values.extraVolumes }}
         {{- toYaml .Values.extraVolumes | nindent 8 }}
         {{- end }}
