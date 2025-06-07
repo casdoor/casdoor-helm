@@ -33,6 +33,11 @@ config: |
   enableGzip = true
   ldapServerPort = 10389
 
+# Use secret to mount app.conf file for who don't want user,pass on git  
+# encode base64 on Value.config or create your own secret with anything you prefer
+# if you use your own secret, leave Value.config: ""
+# configFromSecret: casdoor
+
 database:
   # Supports mysql, postgres, cockroachdb, sqlite
   driver: sqlite
