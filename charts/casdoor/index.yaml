@@ -2,6 +2,756 @@ apiVersion: v1
 entries:
   casdoor-helm-charts:
   - apiVersion: v2
+    appVersion: v1.930.0
+    created: "2025-06-06T16:52:43.543138012Z"
+    description: A Helm chart for Kubernetes
+    digest: 4568e7f7106e9ea1be5ef65886feb30dea593bae7767b5af7e36ef7f80f2301e
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.930.0.tgz
+    version: v1.930.0
+  - apiVersion: v2
+    appVersion: v1.929.0
+    created: "2025-06-06T15:27:37.037486477Z"
+    description: A Helm chart for Kubernetes
+    digest: cb6b6994b955524745ea1b69adf7bd5ebb2c9d1ffdf88d92f96be4697917ab0c
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.929.0.tgz
+    version: v1.929.0
+  - apiVersion: v2
+    appVersion: v1.928.0
+    created: "2025-06-05T16:24:36.895785385Z"
+    description: A Helm chart for Kubernetes
+    digest: 95ed1f9715a5069769394fcf870da2ced16b67b032ad9279bee6d3e841645022
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.928.0.tgz
+    version: v1.928.0
+  - apiVersion: v2
+    appVersion: v1.927.0
+    created: "2025-06-05T13:13:51.419222749Z"
+    description: A Helm chart for Kubernetes
+    digest: ef398990abea8300a917271799c5228b145766df544898ce450dc2c3814f746d
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.927.0.tgz
+    version: v1.927.0
+  - apiVersion: v2
+    appVersion: v1.926.0
+    created: "2025-06-04T15:04:38.162038051Z"
+    description: A Helm chart for Kubernetes
+    digest: bf082c4ad443fe508cf0dfdae208325f889181a6acd2389a6c25e4faad678af5
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.926.0.tgz
+    version: v1.926.0
+  - apiVersion: v2
+    appVersion: v1.925.0
+    created: "2025-06-03T09:02:10.798956005Z"
+    description: A Helm chart for Kubernetes
+    digest: f15ead1098f34bb6bc71de93dee833dd55129eed9a83040a07d0b30554275af7
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.925.0.tgz
+    version: v1.925.0
+  - apiVersion: v2
+    appVersion: v1.924.0
+    created: "2025-05-28T14:52:16.777437419Z"
+    description: A Helm chart for Kubernetes
+    digest: bbd18c49c2d463a110d561c03625504bb4d4c30d30b75d4c3daf268df78acc98
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.924.0.tgz
+    version: v1.924.0
+  - apiVersion: v2
+    appVersion: v1.923.0
+    created: "2025-05-28T10:55:30.737686653Z"
+    description: A Helm chart for Kubernetes
+    digest: 518b744faaeee1d60aabb8fe2a1c56647ef4d67f5e5336977b910631db381a50
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.923.0.tgz
+    version: v1.923.0
+  - apiVersion: v2
+    appVersion: v1.922.0
+    created: "2025-05-27T17:46:13.571691601Z"
+    description: A Helm chart for Kubernetes
+    digest: cc05cb5ccfee6cd3b0c639c0bef7993a74b9736c2e5bf5c7b71a6972554de1ce
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.922.0.tgz
+    version: v1.922.0
+  - apiVersion: v2
+    appVersion: v1.921.0
+    created: "2025-05-26T12:42:22.32677275Z"
+    description: A Helm chart for Kubernetes
+    digest: b7ba1a3a001600f31fa90a0c1eac59f045a073b831f7adcbdfdd42944abc3918
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.921.0.tgz
+    version: v1.921.0
+  - apiVersion: v2
+    appVersion: v1.920.0
+    created: "2025-05-25T13:42:49.201953714Z"
+    description: A Helm chart for Kubernetes
+    digest: 88dfe1e6e4f65e67595567d479977856d96faf7c4f3f7560d5cbdbde3ad7488f
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.920.0.tgz
+    version: v1.920.0
+  - apiVersion: v2
+    appVersion: v1.919.0
+    created: "2025-05-23T09:48:07.301494076Z"
+    description: A Helm chart for Kubernetes
+    digest: 839543adc08853f8f371a2098953ae6b20dac63140a3fadc6c95e2e1da1cd313
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.919.0.tgz
+    version: v1.919.0
+  - apiVersion: v2
+    appVersion: v1.918.0
+    created: "2025-05-22T23:35:38.168335099Z"
+    description: A Helm chart for Kubernetes
+    digest: 0973ccf8253cc50e5bddce1b8e9af1f301a0bd332c6cf1c5c1087399308b6757
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.918.0.tgz
+    version: v1.918.0
+  - apiVersion: v2
+    appVersion: v1.917.0
+    created: "2025-05-22T13:02:03.126769475Z"
+    description: A Helm chart for Kubernetes
+    digest: c5666b10f1868de4d60076716fbb7265fa00385c9c387da0c9eab347f4f252aa
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.917.0.tgz
+    version: v1.917.0
+  - apiVersion: v2
+    appVersion: v1.916.0
+    created: "2025-05-21T11:13:46.751049927Z"
+    description: A Helm chart for Kubernetes
+    digest: 5e621ba07b8a9fbccec2b297097662dd14b5e69b4de9d0d1c11f323e897f6a93
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.916.0.tgz
+    version: v1.916.0
+  - apiVersion: v2
+    appVersion: v1.915.0
+    created: "2025-05-20T02:58:00.770493831Z"
+    description: A Helm chart for Kubernetes
+    digest: 172cbe58845a37f87a74816face3bad20ae8f52872f0db3437e719c3f4dbe14d
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.915.0.tgz
+    version: v1.915.0
+  - apiVersion: v2
+    appVersion: v1.914.0
+    created: "2025-05-19T17:24:13.309197552Z"
+    description: A Helm chart for Kubernetes
+    digest: 42dc25cd2eb441acad5444527d51e0b6a6983e3c84969a87ea0d3183c0ff877d
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.914.0.tgz
+    version: v1.914.0
+  - apiVersion: v2
+    appVersion: v1.913.0
+    created: "2025-05-18T02:06:10.723013696Z"
+    description: A Helm chart for Kubernetes
+    digest: b4de05abd14807404e3cf636e8e4db570548c25e541df78710371aaf1a529b7a
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.913.0.tgz
+    version: v1.913.0
+  - apiVersion: v2
+    appVersion: v1.912.0
+    created: "2025-05-17T12:17:43.5205681Z"
+    description: A Helm chart for Kubernetes
+    digest: 333f8bfd3c274416d68eb8bcd54f89b7751b158dba1fc025975a92c65bee42a0
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.912.0.tgz
+    version: v1.912.0
+  - apiVersion: v2
+    appVersion: v1.911.0
+    created: "2025-05-17T11:11:53.498204973Z"
+    description: A Helm chart for Kubernetes
+    digest: 8aeb2da8284dfcb01d502da2b2b7408ce7cebd746e10984d8cd7f696d6504c2b
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.911.0.tgz
+    version: v1.911.0
+  - apiVersion: v2
+    appVersion: v1.910.0
+    created: "2025-05-16T18:45:38.935809778Z"
+    description: A Helm chart for Kubernetes
+    digest: 4ebdb3e25170f8b637c7e1a9c5bd47b56c649505ca92fbafee71d11ab599de99
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.910.0.tgz
+    version: v1.910.0
+  - apiVersion: v2
+    appVersion: v1.909.0
+    created: "2025-05-16T11:00:00.991597578Z"
+    description: A Helm chart for Kubernetes
+    digest: f6fa1b3f53ad36a0450b80aa4dac4b86a1d6bee958db10ded1f6d182b35e587b
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.909.0.tgz
+    version: v1.909.0
+  - apiVersion: v2
+    appVersion: v1.908.0
+    created: "2025-05-15T13:23:45.405739271Z"
+    description: A Helm chart for Kubernetes
+    digest: 32649be02deac95d18e650e2ad606e3b46c08e84be7803f5978f169890763c1d
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.908.0.tgz
+    version: v1.908.0
+  - apiVersion: v2
+    appVersion: v1.907.0
+    created: "2025-05-14T00:47:05.8884543Z"
+    description: A Helm chart for Kubernetes
+    digest: 4000339821ddfaefa7702a5e5315e4b00bc55ac9f8add4da1d1e0645a4217baf
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.907.0.tgz
+    version: v1.907.0
+  - apiVersion: v2
+    appVersion: v1.906.0
+    created: "2025-05-11T02:09:54.08658382Z"
+    description: A Helm chart for Kubernetes
+    digest: 4c276d49929d899c4008859a6800dd8ee5dc2973ac3b6c05787a23ae5510a777
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.906.0.tgz
+    version: v1.906.0
+  - apiVersion: v2
+    appVersion: v1.905.0
+    created: "2025-05-10T15:01:01.47849108Z"
+    description: A Helm chart for Kubernetes
+    digest: 1557bbfabb4e7bb1d78257331b2ad2eb14fe37cb75d51dcf1c25e7b446747d76
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.905.0.tgz
+    version: v1.905.0
+  - apiVersion: v2
+    appVersion: v1.904.0
+    created: "2025-05-05T10:44:20.977176144Z"
+    description: A Helm chart for Kubernetes
+    digest: d1e6cedbb5d428a0ff55fd0b45bbf07323c0785837def372e46cfb89a8d1bc9a
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.904.0.tgz
+    version: v1.904.0
+  - apiVersion: v2
+    appVersion: v1.903.0
+    created: "2025-05-04T17:21:51.925709035Z"
+    description: A Helm chart for Kubernetes
+    digest: 274949ef8338219dbebfba92d46b3278abeea5da83ea3f4758d837c89b4460e3
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.903.0.tgz
+    version: v1.903.0
+  - apiVersion: v2
+    appVersion: v1.902.0
+    created: "2025-05-03T15:05:48.009985015Z"
+    description: A Helm chart for Kubernetes
+    digest: 93fd6a9320b0d9a492911657c16176a19ebd4b77d7b6e0a54274455d0386bc7d
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.902.0.tgz
+    version: v1.902.0
+  - apiVersion: v2
+    appVersion: v1.901.0
+    created: "2025-04-30T16:00:22.533939188Z"
+    description: A Helm chart for Kubernetes
+    digest: b6e610389f0787f6981b8a2ffc3a63cb55eab71658dda33398768079f062363f
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.901.0.tgz
+    version: v1.901.0
+  - apiVersion: v2
+    appVersion: v1.900.0
+    created: "2025-04-28T01:50:18.887550901Z"
+    description: A Helm chart for Kubernetes
+    digest: 5954fc5381033e241b3a7c9453819643c122c2f4d26a0a89ac4bd0c275e1c7ca
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.900.0.tgz
+    version: v1.900.0
+  - apiVersion: v2
+    appVersion: v1.899.0
+    created: "2025-04-26T14:23:27.995354422Z"
+    description: A Helm chart for Kubernetes
+    digest: 61ad2b73f4e7b3120968fa85d9ba1c623f17d2469364bf29f451a0ba36a962f0
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.899.0.tgz
+    version: v1.899.0
+  - apiVersion: v2
+    appVersion: v1.898.0
+    created: "2025-04-25T08:36:08.443934864Z"
+    description: A Helm chart for Kubernetes
+    digest: ae21af6900d536d6e0c6a73b730a3685a260c46a96b0ff112e25f9e18600099d
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.898.0.tgz
+    version: v1.898.0
+  - apiVersion: v2
+    appVersion: v1.897.0
+    created: "2025-04-23T17:29:44.661741001Z"
+    description: A Helm chart for Kubernetes
+    digest: 374462d7dfebe4417fa7ac7732e962fd4a5431dcff47b1947384c55331830aca
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.897.0.tgz
+    version: v1.897.0
+  - apiVersion: v2
+    appVersion: v1.896.0
+    created: "2025-04-23T17:16:14.965663483Z"
+    description: A Helm chart for Kubernetes
+    digest: af11d8d6f6b2437b9ef44a22946cbd947bb0db5ce630e8980fa7064ae5de2205
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.896.0.tgz
+    version: v1.896.0
+  - apiVersion: v2
+    appVersion: v1.895.0
+    created: "2025-04-23T13:50:07.764509751Z"
+    description: A Helm chart for Kubernetes
+    digest: d1933f2baab7d6ab070ab822b8955d3304d486b9a53ed4181e77a5b56add65a0
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.895.0.tgz
+    version: v1.895.0
+  - apiVersion: v2
+    appVersion: v1.894.0
+    created: "2025-04-21T01:29:09.290078412Z"
+    description: A Helm chart for Kubernetes
+    digest: dc562fd21c80bdc3a23874894360cd34bbe20fca1916892b4df02b26c2a30416
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.894.0.tgz
+    version: v1.894.0
+  - apiVersion: v2
+    appVersion: v1.893.0
+    created: "2025-04-19T15:19:58.682241344Z"
+    description: A Helm chart for Kubernetes
+    digest: 43edf249e3ba12eaad1dea227e24160d69ff188929f1506929f36c9eb90fe097
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.893.0.tgz
+    version: v1.893.0
+  - apiVersion: v2
+    appVersion: v1.892.0
+    created: "2025-04-16T18:20:47.265327833Z"
+    description: A Helm chart for Kubernetes
+    digest: 70dc6e3832002ef1d65118f873dd402d10d8cd64eb43fb192b25f20aa2005633
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.892.0.tgz
+    version: v1.892.0
+  - apiVersion: v2
+    appVersion: v1.891.0
+    created: "2025-04-15T08:19:34.752943175Z"
+    description: A Helm chart for Kubernetes
+    digest: 551beebe9a735acd513478a69ce90af3d16ff89e2a1a62f7141389e66e709a93
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.891.0.tgz
+    version: v1.891.0
+  - apiVersion: v2
+    appVersion: v1.890.0
+    created: "2025-04-13T16:10:36.855442402Z"
+    description: A Helm chart for Kubernetes
+    digest: fe3b26f6377576b9753a4ea33d8ab4582bd3cb963e6718f3c4ba99de3e8655cd
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.890.0.tgz
+    version: v1.890.0
+  - apiVersion: v2
+    appVersion: v1.889.0
+    created: "2025-04-13T10:15:17.304979826Z"
+    description: A Helm chart for Kubernetes
+    digest: ad70ab13f6242965585673a336b54271ef61a804fcce77f8437d247c5390bb25
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.889.0.tgz
+    version: v1.889.0
+  - apiVersion: v2
+    appVersion: v1.888.0
+    created: "2025-04-11T14:42:48.461892731Z"
+    description: A Helm chart for Kubernetes
+    digest: 42f8d589ec18c13c9d07c8b2263d3dffbc79d8f65c6ab1a40eae99dd91c2f935
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.888.0.tgz
+    version: v1.888.0
+  - apiVersion: v2
+    appVersion: v1.887.0
+    created: "2025-04-10T18:01:58.950756755Z"
+    description: A Helm chart for Kubernetes
+    digest: e3df2b3e71d7f19ceb1535789884813980132b02cc9e419f9b0847aee339993c
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.887.0.tgz
+    version: v1.887.0
+  - apiVersion: v2
+    appVersion: v1.886.0
+    created: "2025-04-09T14:48:11.409764387Z"
+    description: A Helm chart for Kubernetes
+    digest: 854b47daf3ccb336228e3cc8cdc9662a0cc3376c016435a3e481a62a8bf3a828
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.886.0.tgz
+    version: v1.886.0
+  - apiVersion: v2
+    appVersion: v1.885.0
+    created: "2025-04-08T18:21:44.425956554Z"
+    description: A Helm chart for Kubernetes
+    digest: e264110eae771ef7de8201609cabb8b1fe83de00d24eaba817eb4bc1ed857a27
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.885.0.tgz
+    version: v1.885.0
+  - apiVersion: v2
+    appVersion: v1.884.0
+    created: "2025-04-08T15:42:53.067641192Z"
+    description: A Helm chart for Kubernetes
+    digest: 5e0c86921ceff915424c581b625b0f209ddc2eeb469dd8816a1b1d98d7c74fec
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.884.0.tgz
+    version: v1.884.0
+  - apiVersion: v2
+    appVersion: v1.883.0
+    created: "2025-04-08T10:09:41.359322359Z"
+    description: A Helm chart for Kubernetes
+    digest: c6536628b20641ae0d2b2789ad449e086d32eaa75ccaf9e55df6dcb1f2c75bd4
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.883.0.tgz
+    version: v1.883.0
+  - apiVersion: v2
+    appVersion: v1.882.0
+    created: "2025-04-06T18:21:04.605853147Z"
+    description: A Helm chart for Kubernetes
+    digest: 84d9fe39b192f173d98c653580217791c91d9f49d37d45fdbf376a69865091f3
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.882.0.tgz
+    version: v1.882.0
+  - apiVersion: v2
+    appVersion: v1.881.0
+    created: "2025-04-05T08:56:26.344165968Z"
+    description: A Helm chart for Kubernetes
+    digest: 86d4e3b7d9adafced033aeb7fd081beb214995c0f8538a37ccb01d2efed828a2
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.881.0.tgz
+    version: v1.881.0
+  - apiVersion: v2
+    appVersion: v1.880.0
+    created: "2025-04-04T18:27:44.964082029Z"
+    description: A Helm chart for Kubernetes
+    digest: 34916bfb328ec0feb3f0268e8de0ac5e5802710c77a7d0652e22e4b337f3cfc0
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.880.0.tgz
+    version: v1.880.0
+  - apiVersion: v2
+    appVersion: v1.879.0
+    created: "2025-04-03T17:28:42.845001283Z"
+    description: A Helm chart for Kubernetes
+    digest: eb3f5b521c512e0e85c5c935f4900c6830f241a4de78dcb9c1f857d3f429747d
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.879.0.tgz
+    version: v1.879.0
+  - apiVersion: v2
+    appVersion: v1.878.0
+    created: "2025-04-02T12:44:43.505188711Z"
+    description: A Helm chart for Kubernetes
+    digest: 810011c597518cc54968bf2f5703d403db58b1c02c0ab13d4d29afe465b9b8e0
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.878.0.tgz
+    version: v1.878.0
+  - apiVersion: v2
+    appVersion: v1.877.0
+    created: "2025-04-01T17:37:47.718410875Z"
+    description: A Helm chart for Kubernetes
+    digest: b3b45a65363abe351e6dc5a86b61e927a86c12bcaa64f7231e44bb46814c7faf
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.877.0.tgz
+    version: v1.877.0
+  - apiVersion: v2
+    appVersion: v1.876.0
+    created: "2025-04-01T08:57:50.479371576Z"
+    description: A Helm chart for Kubernetes
+    digest: 5d9c0395131f084ed72c88cd7099664996cf8e1c420e61d7073a5706e3c8f4cf
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.876.0.tgz
+    version: v1.876.0
+  - apiVersion: v2
+    appVersion: v1.875.0
+    created: "2025-03-31T17:15:48.19360769Z"
+    description: A Helm chart for Kubernetes
+    digest: 23e382acd3f59b2b2242c6a616364f5aa5a9ad102957944000c7a84770fe9ed9
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.875.0.tgz
+    version: v1.875.0
+  - apiVersion: v2
+    appVersion: v1.874.0
+    created: "2025-03-29T13:42:45.157805826Z"
+    description: A Helm chart for Kubernetes
+    digest: c79c9632f3374638f433c618704ff2a890c7ebd3dd2a23c69af2028b29176962
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.874.0.tgz
+    version: v1.874.0
+  - apiVersion: v2
+    appVersion: v1.873.0
+    created: "2025-03-26T14:30:09.732259053Z"
+    description: A Helm chart for Kubernetes
+    digest: c0d3588f4682d83fcc6a188dd465e074ecd20f49fffd1ae625b1985aa3e2073e
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.873.0.tgz
+    version: v1.873.0
+  - apiVersion: v2
+    appVersion: v1.872.0
+    created: "2025-03-26T13:50:51.941544019Z"
+    description: A Helm chart for Kubernetes
+    digest: 976c757f0e94c37287a14369c6d8821806a00862420aa4b187d4b2fcb4600447
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.872.0.tgz
+    version: v1.872.0
+  - apiVersion: v2
+    appVersion: v1.871.0
+    created: "2025-03-25T14:44:03.535332643Z"
+    description: A Helm chart for Kubernetes
+    digest: c648f4954d13570a5c8b82646038f5536aa1add010977401e133fc409bb4077d
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.871.0.tgz
+    version: v1.871.0
+  - apiVersion: v2
+    appVersion: v1.870.0
+    created: "2025-03-24T06:04:00.25205254Z"
+    description: A Helm chart for Kubernetes
+    digest: a4b2dc6ec6ceee1784606c13cdb38ef29b8e9cc401590d3cfc71b983927a5b57
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.870.0.tgz
+    version: v1.870.0
+  - apiVersion: v2
+    appVersion: v1.869.0
+    created: "2025-03-22T10:37:10.623659616Z"
+    description: A Helm chart for Kubernetes
+    digest: 2fbd693e0bd3f2a4cebe5dec2edaaa32c4a1bf70d0a5b02a011930fd1033897a
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.869.0.tgz
+    version: v1.869.0
+  - apiVersion: v2
+    appVersion: v1.868.0
+    created: "2025-03-22T10:12:15.180617201Z"
+    description: A Helm chart for Kubernetes
+    digest: 13cd0f274336257f28fa6c4fface2b0222aaa28443b778dc63650357ac1d506e
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.868.0.tgz
+    version: v1.868.0
+  - apiVersion: v2
+    appVersion: v1.867.0
+    created: "2025-03-21T15:19:02.879118068Z"
+    description: A Helm chart for Kubernetes
+    digest: c8f12afb2a01f5e685bdcb89509eeca691ba5b5976c34177cea8e5c2f397de23
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.867.0.tgz
+    version: v1.867.0
+  - apiVersion: v2
+    appVersion: v1.866.0
+    created: "2025-03-21T13:21:53.516645627Z"
+    description: A Helm chart for Kubernetes
+    digest: c4a9ddcca150205ca2a223f82547c17477aaefcf052a50ebb50136c172bcb624
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.866.0.tgz
+    version: v1.866.0
+  - apiVersion: v2
+    appVersion: v1.865.0
+    created: "2025-03-20T01:23:57.264247923Z"
+    description: A Helm chart for Kubernetes
+    digest: 0ddc65d481eb81405dc21ab4dcbe62800fc554c4533da6d5ab935c3bd31540ee
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.865.0.tgz
+    version: v1.865.0
+  - apiVersion: v2
+    appVersion: v1.864.0
+    created: "2025-03-19T15:20:40.160704955Z"
+    description: A Helm chart for Kubernetes
+    digest: 2042887be6817781c7b76eb0e303a100516185e1469bd1aed989f7dc6b03f5ef
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.864.0.tgz
+    version: v1.864.0
+  - apiVersion: v2
+    appVersion: v1.863.0
+    created: "2025-03-19T03:01:07.17635778Z"
+    description: A Helm chart for Kubernetes
+    digest: df33f8f44d11d7d5534e2ab37e7e0a8af1b4c10ca5aed2078ecc1f647c78e838
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.863.0.tgz
+    version: v1.863.0
+  - apiVersion: v2
+    appVersion: v1.862.0
+    created: "2025-03-18T12:24:33.142730323Z"
+    description: A Helm chart for Kubernetes
+    digest: 6a711058b5644477c3448915327a60924661f9682009b98188ad05253a3b8d14
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.862.0.tgz
+    version: v1.862.0
+  - apiVersion: v2
+    appVersion: v1.861.0
+    created: "2025-03-16T08:30:22.537753277Z"
+    description: A Helm chart for Kubernetes
+    digest: a690f65b2e8bb245338ceeb6557253007f97a8ab55bb656da14c0a65f6d8a264
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.861.0.tgz
+    version: v1.861.0
+  - apiVersion: v2
+    appVersion: v1.860.0
+    created: "2025-03-13T14:07:45.47177824Z"
+    description: A Helm chart for Kubernetes
+    digest: 722f2af6f659ac8d534b1935fdc7d60f7af24f2e2cde8c54908ebb5c5e6c492d
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.860.0.tgz
+    version: v1.860.0
+  - apiVersion: v2
+    appVersion: v1.859.0
+    created: "2025-03-13T13:58:26.060880776Z"
+    description: A Helm chart for Kubernetes
+    digest: 3a26e9cbf8c59bc6643f9b73ee16f0afa35dbe6a629dbf4282c3de5b4ced95c1
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.859.0.tgz
+    version: v1.859.0
+  - apiVersion: v2
+    appVersion: v1.858.0
+    created: "2025-03-11T13:21:18.725802487Z"
+    description: A Helm chart for Kubernetes
+    digest: 31c929a7e25201f67f449685eb8e8ac4165c5d742c16a61fa4fdbcf195377667
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.858.0.tgz
+    version: v1.858.0
+  - apiVersion: v2
+    appVersion: v1.857.0
+    created: "2025-03-08T18:58:10.149725867Z"
+    description: A Helm chart for Kubernetes
+    digest: 764dd2e712298964c1d829d9fe36be0fec52754734aa17208136e62b83dd5fa9
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.857.0.tgz
+    version: v1.857.0
+  - apiVersion: v2
+    appVersion: v1.856.0
+    created: "2025-03-07T16:39:53.785303341Z"
+    description: A Helm chart for Kubernetes
+    digest: e755048522418825f8b3c6d716313b8f007bb2d45cbe697de8dc6fa0845640f7
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-v1.856.0.tgz
+    version: v1.856.0
+  - apiVersion: v2
     appVersion: v1.855.0
     created: "2025-03-04T06:37:06.824003638Z"
     description: A Helm chart for Kubernetes
@@ -3371,4 +4121,4 @@ entries:
     urls:
     - oci://registry-1.docker.io/casbin/casdoor-helm-charts-0.4.3.tgz
     version: 0.4.3
-generated: "2025-03-04T06:37:06.82213551Z"
+generated: "2025-06-06T16:52:43.541516273Z"
