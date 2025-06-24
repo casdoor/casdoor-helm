@@ -94,7 +94,7 @@ spec:
             sources:
             {{- if .Values.configFromSecret }}
               - secret:
-                  secretName: {{ .Values.configFromSecret }}
+                  name: {{ .Values.configFromSecret }}
                   items:
                     - key: app.conf
                       path: app.conf
