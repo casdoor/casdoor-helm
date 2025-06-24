@@ -33,7 +33,7 @@ config: |
   enableGzip = true
   ldapServerPort = 10389
 
-# Use secret to mount app.conf file for who don't want user,pass on git  
+# Use secret to mount app.conf file for who don't want user,pass on git
 # encode base64 on Value.config or create your own secret with anything you prefer
 # if you use your own secret, leave Value.config: ""
 # configFromSecret: casdoor
@@ -72,10 +72,12 @@ serviceAccount:
 
 podAnnotations: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -96,7 +98,8 @@ service:
 ingress:
   enabled: false
   className: ""
-  annotations: {}
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
@@ -109,7 +112,8 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: {}
+resources:
+  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -150,20 +154,27 @@ extraContainers: ""
 extraVolumeMounts: []
 extraVolumes: []
 
-envFromSecret: []
+envFromSecret:
+  []
   # - name: ENV_NAME
   #   secretName: test-secret
   #   key: key_name
 
-envFromConfigmap: []
+envFromConfigmap:
+  []
   # - name: ENV_NAME
   #   configmapName: test-cm
   #   key: key_name
 
-envFrom: []
+envFrom:
+  []
   # - type: configmap
   #   name: test-cm
   # - type: secret
   #   name: test-secret
 
 priorityClassName: ""
+
+# -- Enable/disable the default config volume mount to /conf
+# Set to false if you want to provide your own config volume via extraVolumes/extraVolumeMounts
+defaultConfigVolumeEnabled: true
