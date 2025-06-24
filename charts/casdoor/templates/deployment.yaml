@@ -79,8 +79,10 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
+            {{- if .Values.defaultConfigVolumeEnabled }}
             - name: config-volume
               mountPath: /conf
+            {{- end }}
             {{- if .Values.extraVolumeMounts }}
             {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
             {{- end }}
@@ -88,6 +90,7 @@ spec:
           {{- .Values.extraContainers | nindent 8 }}
         {{- end }}
       volumes:
+        {{- if .Values.defaultConfigVolumeEnabled }}
         - name: config-volume
           projected:
             defaultMode: 420
@@ -105,6 +108,7 @@ spec:
                     - key: app.conf
                       path: app.conf
             {{- end }}
+        {{- end }}
         {{- if .Values.extraVolumes }}
         {{- toYaml .Values.extraVolumes | nindent 8 }}
         {{- end }}
