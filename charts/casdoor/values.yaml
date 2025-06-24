@@ -167,3 +167,7 @@ envFrom: []
   #   name: test-secret
 
 priorityClassName: ""
+
+# -- Enable/disable the default config volume mount to /conf
+# Set to false if you want to provide your own config volume via extraVolumes/extraVolumeMounts
+defaultConfigVolumeEnabled: true
