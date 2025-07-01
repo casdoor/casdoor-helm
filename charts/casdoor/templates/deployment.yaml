@@ -124,7 +124,7 @@ spec:
         {{- if .Values.persistence.enabled }}
         - name: data-volume
           persistentVolumeClaim:
-            claimName: {{ include "chart.fullname" . }}-data
+            claimName: {{ include "casdoor.fullname" . }}-data
         {{- end }}
 
         {{- if .Values.extraVolumes }}
