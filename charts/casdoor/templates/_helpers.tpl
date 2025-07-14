@@ -71,6 +71,9 @@ Create dataSourceName used in the configmap
 "user={{ .Values.database.user }} password={{ .Values.database.password }} host={{ .Values.database.host }} port={{ default "5432" .Values.database.port }} dbname={{ .Values.database.databaseName }} sslmode={{ .Values.database.sslMode }}"
 {{- else if eq .Values.database.driver "cockroachdb" -}}
 "user={{ .Values.database.user }} password={{ .Values.database.password }} host={{ .Values.database.host }} port={{ default "26257" .Values.database.port }} dbname={{ .Values.database.databaseName }} sslmode={{ .Values.database.sslMode }} serial_normalization=virtual_sequence"
+{{- else if .Values.persistence.enabled -}}
+file:/data/casdoor.db?cache=shared
+{{- end }}
 {{- else -}}
 file:casdoor.db?cache=shared
 {{- end }}
@@ -130,3 +133,12 @@ Create Envfrom
 {{- end -}}
 {{- end -}}
 {{- end -}}
+
+{{- define "casdoor.logLocation" -}}
+{{- if .Values.persistence.enabled -}}
+/data/logs/casdoor.log
+{{- else -}}
+logs/casdoor.log
+{{- end }}
+{{- end }}
+
