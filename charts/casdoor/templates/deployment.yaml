@@ -27,11 +27,6 @@ spec:
       {{- end }}
       serviceAccountName: {{ include "casdoor.serviceAccountName" . }}
       securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: "Always"
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{ if .Values.initContainersEnabled }}
       initContainers:
@@ -43,9 +38,6 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
-            runAsNonRoot: true
-            runAsUser: 1000
-            runAsGroup: 1000
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -126,7 +118,6 @@ spec:
           persistentVolumeClaim:
             claimName: {{ include "casdoor.fullname" . }}-data
         {{- end }}
-
         {{- if .Values.extraVolumes }}
         {{- toYaml .Values.extraVolumes | nindent 8 }}
         {{- end }}
