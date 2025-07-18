@@ -32,7 +32,6 @@ config: |
   origin =
   enableGzip = true
   ldapServerPort = 10389
-  logConfig = {"adapter":"file", "filename": "{{ include "casdoor.logLocation" . }}", "maxdays":99999, "perm":"0770"}
 
 # Use secret to mount app.conf file for who don't want user,pass on git  
 # encode base64 on Value.config or create your own secret with anything you prefer
@@ -172,14 +171,3 @@ priorityClassName: ""
 # -- Enable/disable the default config volume mount to /conf
 # Set to false if you want to provide your own config volume via extraVolumes/extraVolumeMounts
 defaultConfigVolumeEnabled: true
-
-persistence:
-  enabled: true
-  # storageClass: ""
-  accessModes:
-    - ReadWriteOnce
-  size: 8Gi
-  annotations: {}
-  # selector:
-  #   matchLabels:
-  #     app: my-app
