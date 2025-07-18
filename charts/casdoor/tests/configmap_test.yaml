@@ -1,0 +1,30 @@
+suite: test configmap
+templates:
+- configmap.yaml
+
+tests:
+- it: should render with default values (sqlite)
+  asserts:
+  - matchSnapshot: {}
+
+- it: should not render when configFromSecret is set
+  set:
+    configFromSecret: my-secret
+  asserts:
+  - hasDocuments:
+      count: 0
+
+- it: should render with postgres driver
+  set:
+    database.driver: postgres
+    database.host: my-postgres
+    database.user: my-user
+    database.password: my-password
+  asserts:
+  - matchSnapshot: {}
+
+- it: should render with custom log location when persistence is enabled
+  set:
+    persistence.enabled: true
+  asserts:
+  - matchSnapshot: {}

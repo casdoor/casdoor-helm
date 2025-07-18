@@ -1,20 +1,103 @@
 suite: test deployment
 templates:
-  - deployment.yaml
-chart:
-  version: 1.0.0
-  appVersion: 1.2.3
+- deployment.yaml
+
 tests:
-  - it: manifest should match snapshot
-    asserts:
-      - matchSnapshot: {}
-  - it: has extraVolume and extraVolumeMounts
-    set:
-      extraVolumes:
-        - name: extra-volume
-          emptyDir: {}
-      extraVolumeMounts:
-        - name: extra-volume
-          mountPath: /extra-volume
-    asserts:
-      - matchSnapshot: {}
+- it: should render with default values (sqlite)
+  set:
+    database.driver: sqlite
+    persistence.enabled: true
+  asserts:
+  - matchSnapshot: {}
+
+- it: should set replicaCount (sqlite)
+  set:
+    replicaCount: 3
+    database.driver: sqlite
+    persistence.enabled: true
+  asserts:
+  - matchSnapshot: {}
+
+- it: should set custom image and pull secrets (sqlite)
+  set:
+    image:
+      repository: my-repo
+      name: my-casdoor
+      tag: "1.0.0"
+    imagePullSecrets:
+    - name: my-secret
+    database.driver: sqlite
+    persistence.enabled: true
+  asserts:
+  - matchSnapshot: {}
+
+- it: should enable persistence (sqlite)
+  set:
+    persistence.enabled: true
+    database.driver: sqlite
+  asserts:
+  - matchSnapshot: {}
+
+- it: should add extra volumes and mounts (sqlite)
+  set:
+    extraVolumes:
+    - name: extra-vol
+      emptyDir: {}
+    extraVolumeMounts:
+    - name: extra-vol
+      mountPath: /extra
+    database.driver: sqlite
+    persistence.enabled: true
+  asserts:
+  - matchSnapshot: {}
+
+- it: should disable probes (sqlite)
+  set:
+    probe:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+    database.driver: sqlite
+    persistence.enabled: true
+  asserts:
+  - matchSnapshot: {}
+
+- it: should enable ldap (sqlite)
+  set:
+    ldap.enabled: true
+    database.driver: sqlite
+    persistence.enabled: true
+  asserts:
+  - matchSnapshot: {}
+
+- it: should use config from secret (sqlite)
+  set:
+    configFromSecret: my-casdoor-secret
+    database.driver: sqlite
+    persistence.enabled: true
+  asserts:
+  - matchSnapshot: {}
+
+- it: should not have replicas when autoscaling is enabled (sqlite)
+  set:
+    autoscaling.enabled: true
+    database.driver: sqlite
+    persistence.enabled: true
+  asserts:
+  - matchSnapshot: {}
+
+- it: should render with default values (postgres)
+  set:
+    database.driver: postgres
+    persistence.enabled: false
+  asserts:
+  - matchSnapshot: {}
+
+- it: should set replicaCount (postgres)
+  set:
+    replicaCount: 3
+    database.driver: postgres
+    persistence.enabled: false
+  asserts:
+  - matchSnapshot: {}

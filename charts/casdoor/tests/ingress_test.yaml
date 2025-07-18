@@ -1,0 +1,43 @@
+suite: test ingress
+templates:
+- ingress.yaml
+
+tests:
+- it: should not render when disabled
+  asserts:
+  - hasDocuments:
+      count: 0
+
+- it: should render with default values when enabled
+  set:
+    ingress.enabled: true
+  asserts:
+  - matchSnapshot: {}
+
+- it: should set ingress className
+  set:
+    ingress.enabled: true
+    ingress.className: nginx
+  asserts:
+  - matchSnapshot: {}
+
+- it: should set custom host and path
+  set:
+    ingress.enabled: true
+    ingress.hosts:
+    - host: casdoor.example.com
+      paths:
+      - path: /casdoor
+        pathType: Prefix
+  asserts:
+  - matchSnapshot: {}
+
+- it: should add tls configuration
+  set:
+    ingress.enabled: true
+    ingress.tls:
+    - secretName: casdoor-tls
+      hosts:
+      - casdoor.example.com
+  asserts:
+  - matchSnapshot: {}

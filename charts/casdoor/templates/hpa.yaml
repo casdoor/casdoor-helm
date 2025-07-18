@@ -1,4 +1,4 @@
-{{- if .Values.autoscaling.enabled }}
+{{- if and .Values.autoscaling.enabled (ne .Values.database.driver "sqlite") }}
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -26,6 +26,7 @@ spec:
       resource:
         name: memory
         target:
+          type: Utilization
           averageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
     {{- end }}
 {{- end }}
