@@ -1,4 +1,4 @@
-has extraVolume and extraVolumeMounts:
+should add extra volumes and mounts (sqlite):
   1: |
     apiVersion: apps/v1
     kind: Deployment
@@ -6,29 +6,29 @@ has extraVolume and extraVolumeMounts:
       labels:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
-        app.kubernetes.io/name: casdoor-helm-charts
-        app.kubernetes.io/version: 1.2.3
-        helm.sh/chart: casdoor-helm-charts-1.0.0
-      name: RELEASE-NAME-casdoor-helm-charts
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor
     spec:
       replicas: 1
       selector:
         matchLabels:
           app.kubernetes.io/instance: RELEASE-NAME
-          app.kubernetes.io/name: casdoor-helm-charts
+          app.kubernetes.io/name: casdoor
       template:
         metadata:
           annotations:
-            checksum/config: 529bc7ea51d30d00fefc46d24be7446d0637939827bccc1c3f03755f70059470
+            checksum/config: 57b0042bfacc75c1183fd953e239e821fdb863dd570ba84cc554cf5a7e854a2e
           labels:
             app.kubernetes.io/instance: RELEASE-NAME
-            app.kubernetes.io/name: casdoor-helm-charts
+            app.kubernetes.io/name: casdoor
         spec:
           containers:
             - env:
                 - name: RUNNING_IN_DOCKER
                   value: "true"
-              image: casbin/casdoor:1.2.3
+              image: casbin/casdoor:v1.976.0
               imagePullPolicy: IfNotPresent
               livenessProbe:
                 httpGet:
@@ -48,10 +48,17 @@ has extraVolume and extraVolumeMounts:
               volumeMounts:
                 - mountPath: /conf
                   name: config-volume
-                - mountPath: /extra-volume
-                  name: extra-volume
-          securityContext: {}
-          serviceAccountName: RELEASE-NAME-casdoor-helm-charts
+                - mountPath: /data
+                  name: data-volume
+                - mountPath: /extra
+                  name: extra-vol
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: Always
+            runAsGroup: 1000
+            runAsNonRoot: true
+            runAsUser: 1000
+          serviceAccountName: RELEASE-NAME-casdoor
           volumes:
             - name: config-volume
               projected:
@@ -61,10 +68,13 @@ has extraVolume and extraVolumeMounts:
                       items:
                         - key: app.conf
                           path: app.conf
-                      name: RELEASE-NAME-casdoor-helm-charts-config
+                      name: RELEASE-NAME-casdoor-config
+            - name: data-volume
+              persistentVolumeClaim:
+                claimName: RELEASE-NAME-casdoor-data
             - emptyDir: {}
-              name: extra-volume
-manifest should match snapshot:
+              name: extra-vol
+should disable probes (sqlite):
   1: |
     apiVersion: apps/v1
     kind: Deployment
@@ -72,29 +82,168 @@ manifest should match snapshot:
       labels:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
-        app.kubernetes.io/name: casdoor-helm-charts
-        app.kubernetes.io/version: 1.2.3
-        helm.sh/chart: casdoor-helm-charts-1.0.0
-      name: RELEASE-NAME-casdoor-helm-charts
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor
     spec:
       replicas: 1
       selector:
         matchLabels:
           app.kubernetes.io/instance: RELEASE-NAME
-          app.kubernetes.io/name: casdoor-helm-charts
+          app.kubernetes.io/name: casdoor
       template:
         metadata:
           annotations:
-            checksum/config: 529bc7ea51d30d00fefc46d24be7446d0637939827bccc1c3f03755f70059470
+            checksum/config: 57b0042bfacc75c1183fd953e239e821fdb863dd570ba84cc554cf5a7e854a2e
           labels:
             app.kubernetes.io/instance: RELEASE-NAME
-            app.kubernetes.io/name: casdoor-helm-charts
+            app.kubernetes.io/name: casdoor
         spec:
           containers:
             - env:
                 - name: RUNNING_IN_DOCKER
                   value: "true"
-              image: casbin/casdoor:1.2.3
+              image: casbin/casdoor:v1.976.0
+              imagePullPolicy: IfNotPresent
+              name: casdoor-helm-charts
+              ports:
+                - containerPort: 8000
+                  name: http
+                  protocol: TCP
+              resources: {}
+              securityContext: {}
+              volumeMounts:
+                - mountPath: /conf
+                  name: config-volume
+                - mountPath: /data
+                  name: data-volume
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: Always
+            runAsGroup: 1000
+            runAsNonRoot: true
+            runAsUser: 1000
+          serviceAccountName: RELEASE-NAME-casdoor
+          volumes:
+            - name: config-volume
+              projected:
+                defaultMode: 420
+                sources:
+                  - configMap:
+                      items:
+                        - key: app.conf
+                          path: app.conf
+                      name: RELEASE-NAME-casdoor-config
+            - name: data-volume
+              persistentVolumeClaim:
+                claimName: RELEASE-NAME-casdoor-data
+should enable ldap (sqlite):
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: RELEASE-NAME
+          app.kubernetes.io/name: casdoor
+      template:
+        metadata:
+          annotations:
+            checksum/config: 57b0042bfacc75c1183fd953e239e821fdb863dd570ba84cc554cf5a7e854a2e
+          labels:
+            app.kubernetes.io/instance: RELEASE-NAME
+            app.kubernetes.io/name: casdoor
+        spec:
+          containers:
+            - env:
+                - name: RUNNING_IN_DOCKER
+                  value: "true"
+              image: casbin/casdoor:v1.976.0
+              imagePullPolicy: IfNotPresent
+              livenessProbe:
+                httpGet:
+                  path: /
+                  port: http
+              name: casdoor-helm-charts
+              ports:
+                - containerPort: 8000
+                  name: http
+                  protocol: TCP
+                - containerPort: 10389
+                  name: ldap
+                  protocol: TCP
+              readinessProbe:
+                httpGet:
+                  path: /
+                  port: http
+              resources: {}
+              securityContext: {}
+              volumeMounts:
+                - mountPath: /conf
+                  name: config-volume
+                - mountPath: /data
+                  name: data-volume
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: Always
+            runAsGroup: 1000
+            runAsNonRoot: true
+            runAsUser: 1000
+          serviceAccountName: RELEASE-NAME-casdoor
+          volumes:
+            - name: config-volume
+              projected:
+                defaultMode: 420
+                sources:
+                  - configMap:
+                      items:
+                        - key: app.conf
+                          path: app.conf
+                      name: RELEASE-NAME-casdoor-config
+            - name: data-volume
+              persistentVolumeClaim:
+                claimName: RELEASE-NAME-casdoor-data
+should enable persistence (sqlite):
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: RELEASE-NAME
+          app.kubernetes.io/name: casdoor
+      template:
+        metadata:
+          annotations:
+            checksum/config: 57b0042bfacc75c1183fd953e239e821fdb863dd570ba84cc554cf5a7e854a2e
+          labels:
+            app.kubernetes.io/instance: RELEASE-NAME
+            app.kubernetes.io/name: casdoor
+        spec:
+          containers:
+            - env:
+                - name: RUNNING_IN_DOCKER
+                  value: "true"
+              image: casbin/casdoor:v1.976.0
               imagePullPolicy: IfNotPresent
               livenessProbe:
                 httpGet:
@@ -114,8 +263,15 @@ manifest should match snapshot:
               volumeMounts:
                 - mountPath: /conf
                   name: config-volume
-          securityContext: {}
-          serviceAccountName: RELEASE-NAME-casdoor-helm-charts
+                - mountPath: /data
+                  name: data-volume
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: Always
+            runAsGroup: 1000
+            runAsNonRoot: true
+            runAsUser: 1000
+          serviceAccountName: RELEASE-NAME-casdoor
           volumes:
             - name: config-volume
               projected:
@@ -125,4 +281,502 @@ manifest should match snapshot:
                       items:
                         - key: app.conf
                           path: app.conf
-                      name: RELEASE-NAME-casdoor-helm-charts-config
+                      name: RELEASE-NAME-casdoor-config
+            - name: data-volume
+              persistentVolumeClaim:
+                claimName: RELEASE-NAME-casdoor-data
+should not have replicas when autoscaling is enabled (sqlite):
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor
+    spec:
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: RELEASE-NAME
+          app.kubernetes.io/name: casdoor
+      template:
+        metadata:
+          annotations:
+            checksum/config: 57b0042bfacc75c1183fd953e239e821fdb863dd570ba84cc554cf5a7e854a2e
+          labels:
+            app.kubernetes.io/instance: RELEASE-NAME
+            app.kubernetes.io/name: casdoor
+        spec:
+          containers:
+            - env:
+                - name: RUNNING_IN_DOCKER
+                  value: "true"
+              image: casbin/casdoor:v1.976.0
+              imagePullPolicy: IfNotPresent
+              livenessProbe:
+                httpGet:
+                  path: /
+                  port: http
+              name: casdoor-helm-charts
+              ports:
+                - containerPort: 8000
+                  name: http
+                  protocol: TCP
+              readinessProbe:
+                httpGet:
+                  path: /
+                  port: http
+              resources: {}
+              securityContext: {}
+              volumeMounts:
+                - mountPath: /conf
+                  name: config-volume
+                - mountPath: /data
+                  name: data-volume
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: Always
+            runAsGroup: 1000
+            runAsNonRoot: true
+            runAsUser: 1000
+          serviceAccountName: RELEASE-NAME-casdoor
+          volumes:
+            - name: config-volume
+              projected:
+                defaultMode: 420
+                sources:
+                  - configMap:
+                      items:
+                        - key: app.conf
+                          path: app.conf
+                      name: RELEASE-NAME-casdoor-config
+            - name: data-volume
+              persistentVolumeClaim:
+                claimName: RELEASE-NAME-casdoor-data
+should render with default values (postgres):
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: RELEASE-NAME
+          app.kubernetes.io/name: casdoor
+      template:
+        metadata:
+          annotations:
+            checksum/config: 2fa39bf0719a2f02822099856084a7eadd7e0d8455af37432266e7c0d2c04892
+          labels:
+            app.kubernetes.io/instance: RELEASE-NAME
+            app.kubernetes.io/name: casdoor
+        spec:
+          containers:
+            - env:
+                - name: RUNNING_IN_DOCKER
+                  value: "true"
+              image: casbin/casdoor:v1.976.0
+              imagePullPolicy: IfNotPresent
+              livenessProbe:
+                httpGet:
+                  path: /
+                  port: http
+              name: casdoor-helm-charts
+              ports:
+                - containerPort: 8000
+                  name: http
+                  protocol: TCP
+              readinessProbe:
+                httpGet:
+                  path: /
+                  port: http
+              resources: {}
+              securityContext: {}
+              volumeMounts:
+                - mountPath: /conf
+                  name: config-volume
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: Always
+            runAsGroup: 1000
+            runAsNonRoot: true
+            runAsUser: 1000
+          serviceAccountName: RELEASE-NAME-casdoor
+          volumes:
+            - name: config-volume
+              projected:
+                defaultMode: 420
+                sources:
+                  - configMap:
+                      items:
+                        - key: app.conf
+                          path: app.conf
+                      name: RELEASE-NAME-casdoor-config
+should render with default values (sqlite):
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: RELEASE-NAME
+          app.kubernetes.io/name: casdoor
+      template:
+        metadata:
+          annotations:
+            checksum/config: 57b0042bfacc75c1183fd953e239e821fdb863dd570ba84cc554cf5a7e854a2e
+          labels:
+            app.kubernetes.io/instance: RELEASE-NAME
+            app.kubernetes.io/name: casdoor
+        spec:
+          containers:
+            - env:
+                - name: RUNNING_IN_DOCKER
+                  value: "true"
+              image: casbin/casdoor:v1.976.0
+              imagePullPolicy: IfNotPresent
+              livenessProbe:
+                httpGet:
+                  path: /
+                  port: http
+              name: casdoor-helm-charts
+              ports:
+                - containerPort: 8000
+                  name: http
+                  protocol: TCP
+              readinessProbe:
+                httpGet:
+                  path: /
+                  port: http
+              resources: {}
+              securityContext: {}
+              volumeMounts:
+                - mountPath: /conf
+                  name: config-volume
+                - mountPath: /data
+                  name: data-volume
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: Always
+            runAsGroup: 1000
+            runAsNonRoot: true
+            runAsUser: 1000
+          serviceAccountName: RELEASE-NAME-casdoor
+          volumes:
+            - name: config-volume
+              projected:
+                defaultMode: 420
+                sources:
+                  - configMap:
+                      items:
+                        - key: app.conf
+                          path: app.conf
+                      name: RELEASE-NAME-casdoor-config
+            - name: data-volume
+              persistentVolumeClaim:
+                claimName: RELEASE-NAME-casdoor-data
+should set custom image and pull secrets (sqlite):
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: RELEASE-NAME
+          app.kubernetes.io/name: casdoor
+      template:
+        metadata:
+          annotations:
+            checksum/config: 57b0042bfacc75c1183fd953e239e821fdb863dd570ba84cc554cf5a7e854a2e
+          labels:
+            app.kubernetes.io/instance: RELEASE-NAME
+            app.kubernetes.io/name: casdoor
+        spec:
+          containers:
+            - env:
+                - name: RUNNING_IN_DOCKER
+                  value: "true"
+              image: my-repo/my-casdoor:1.0.0
+              imagePullPolicy: IfNotPresent
+              livenessProbe:
+                httpGet:
+                  path: /
+                  port: http
+              name: casdoor-helm-charts
+              ports:
+                - containerPort: 8000
+                  name: http
+                  protocol: TCP
+              readinessProbe:
+                httpGet:
+                  path: /
+                  port: http
+              resources: {}
+              securityContext: {}
+              volumeMounts:
+                - mountPath: /conf
+                  name: config-volume
+                - mountPath: /data
+                  name: data-volume
+          imagePullSecrets:
+            - name: my-secret
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: Always
+            runAsGroup: 1000
+            runAsNonRoot: true
+            runAsUser: 1000
+          serviceAccountName: RELEASE-NAME-casdoor
+          volumes:
+            - name: config-volume
+              projected:
+                defaultMode: 420
+                sources:
+                  - configMap:
+                      items:
+                        - key: app.conf
+                          path: app.conf
+                      name: RELEASE-NAME-casdoor-config
+            - name: data-volume
+              persistentVolumeClaim:
+                claimName: RELEASE-NAME-casdoor-data
+should set replicaCount (postgres):
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: RELEASE-NAME
+          app.kubernetes.io/name: casdoor
+      template:
+        metadata:
+          annotations:
+            checksum/config: 2fa39bf0719a2f02822099856084a7eadd7e0d8455af37432266e7c0d2c04892
+          labels:
+            app.kubernetes.io/instance: RELEASE-NAME
+            app.kubernetes.io/name: casdoor
+        spec:
+          containers:
+            - env:
+                - name: RUNNING_IN_DOCKER
+                  value: "true"
+              image: casbin/casdoor:v1.976.0
+              imagePullPolicy: IfNotPresent
+              livenessProbe:
+                httpGet:
+                  path: /
+                  port: http
+              name: casdoor-helm-charts
+              ports:
+                - containerPort: 8000
+                  name: http
+                  protocol: TCP
+              readinessProbe:
+                httpGet:
+                  path: /
+                  port: http
+              resources: {}
+              securityContext: {}
+              volumeMounts:
+                - mountPath: /conf
+                  name: config-volume
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: Always
+            runAsGroup: 1000
+            runAsNonRoot: true
+            runAsUser: 1000
+          serviceAccountName: RELEASE-NAME-casdoor
+          volumes:
+            - name: config-volume
+              projected:
+                defaultMode: 420
+                sources:
+                  - configMap:
+                      items:
+                        - key: app.conf
+                          path: app.conf
+                      name: RELEASE-NAME-casdoor-config
+should set replicaCount (sqlite):
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: RELEASE-NAME
+          app.kubernetes.io/name: casdoor
+      template:
+        metadata:
+          annotations:
+            checksum/config: 57b0042bfacc75c1183fd953e239e821fdb863dd570ba84cc554cf5a7e854a2e
+          labels:
+            app.kubernetes.io/instance: RELEASE-NAME
+            app.kubernetes.io/name: casdoor
+        spec:
+          containers:
+            - env:
+                - name: RUNNING_IN_DOCKER
+                  value: "true"
+              image: casbin/casdoor:v1.976.0
+              imagePullPolicy: IfNotPresent
+              livenessProbe:
+                httpGet:
+                  path: /
+                  port: http
+              name: casdoor-helm-charts
+              ports:
+                - containerPort: 8000
+                  name: http
+                  protocol: TCP
+              readinessProbe:
+                httpGet:
+                  path: /
+                  port: http
+              resources: {}
+              securityContext: {}
+              volumeMounts:
+                - mountPath: /conf
+                  name: config-volume
+                - mountPath: /data
+                  name: data-volume
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: Always
+            runAsGroup: 1000
+            runAsNonRoot: true
+            runAsUser: 1000
+          serviceAccountName: RELEASE-NAME-casdoor
+          volumes:
+            - name: config-volume
+              projected:
+                defaultMode: 420
+                sources:
+                  - configMap:
+                      items:
+                        - key: app.conf
+                          path: app.conf
+                      name: RELEASE-NAME-casdoor-config
+            - name: data-volume
+              persistentVolumeClaim:
+                claimName: RELEASE-NAME-casdoor-data
+should use config from secret (sqlite):
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: RELEASE-NAME
+          app.kubernetes.io/name: casdoor
+      template:
+        metadata:
+          annotations:
+            checksum/config: 57b0042bfacc75c1183fd953e239e821fdb863dd570ba84cc554cf5a7e854a2e
+          labels:
+            app.kubernetes.io/instance: RELEASE-NAME
+            app.kubernetes.io/name: casdoor
+        spec:
+          containers:
+            - env:
+                - name: RUNNING_IN_DOCKER
+                  value: "true"
+              image: casbin/casdoor:v1.976.0
+              imagePullPolicy: IfNotPresent
+              livenessProbe:
+                httpGet:
+                  path: /
+                  port: http
+              name: casdoor-helm-charts
+              ports:
+                - containerPort: 8000
+                  name: http
+                  protocol: TCP
+              readinessProbe:
+                httpGet:
+                  path: /
+                  port: http
+              resources: {}
+              securityContext: {}
+              volumeMounts:
+                - mountPath: /conf
+                  name: config-volume
+                - mountPath: /data
+                  name: data-volume
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: Always
+            runAsGroup: 1000
+            runAsNonRoot: true
+            runAsUser: 1000
+          serviceAccountName: RELEASE-NAME-casdoor
+          volumes:
+            - name: config-volume
+              projected:
+                defaultMode: 420
+                sources:
+                  - secret:
+                      items:
+                        - key: app.conf
+                          path: app.conf
+                      name: my-casdoor-secret
+            - name: data-volume
+              persistentVolumeClaim:
+                claimName: RELEASE-NAME-casdoor-data
