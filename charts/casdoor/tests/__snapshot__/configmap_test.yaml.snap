@@ -1,0 +1,82 @@
+should render with custom log location when persistence is enabled:
+  1: |
+    apiVersion: v1
+    data:
+      app.conf: |
+        appname = casdoor
+        httpport = 8000
+        runmode = dev
+        SessionOn = true
+        copyrequestbody = true
+        driverName = sqlite
+        dataSourceName = file:/data/casdoor.db?cache=shared
+        dbName = casdoor
+        redisEndpoint =
+        defaultStorageProvider =
+        isCloudIntranet = false
+        authState = "casdoor"
+        socks5Proxy = ""
+        verificationCodeTimeout = 10
+        initScore = 0
+        logPostOnly = true
+        origin =
+        enableGzip = true
+        ldapServerPort = 10389
+        logConfig = {"adapter":"file", "filename": "/data/logs/casdoor.log", "maxdays":99999, "perm":"0770"}
+    kind: ConfigMap
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor-config
+should render with default values (sqlite):
+  1: |
+    apiVersion: v1
+    data:
+      app.conf: |
+        appname = casdoor
+        httpport = 8000
+        runmode = dev
+        SessionOn = true
+        copyrequestbody = true
+        driverName = sqlite
+        dataSourceName = file:casdoor.db?cache=shared
+        dbName = casdoor
+        redisEndpoint =
+        defaultStorageProvider =
+        isCloudIntranet = false
+        authState = "casdoor"
+        socks5Proxy = ""
+        verificationCodeTimeout = 10
+        initScore = 0
+        logPostOnly = true
+        origin =
+        enableGzip = true
+        ldapServerPort = 10389
+        logConfig = {"adapter":"file", "filename": "logs/casdoor.log", "maxdays":99999, "perm":"0770"}
+    kind: ConfigMap
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor-config
+should render with postgres driver:
+  1: |
+    apiVersion: v1
+    data:
+      app.conf: "appname = casdoor\nhttpport = 8000\nrunmode = dev\nSessionOn = true\ncopyrequestbody = true\ndriverName = postgres\ndataSourceName = \"user=my-user password=my-password host=my-postgres port=5432 dbname=casdoor sslmode=disable\"\ndbName = \nredisEndpoint =\ndefaultStorageProvider =\nisCloudIntranet = false\nauthState = \"casdoor\"\nsocks5Proxy = \"\"\nverificationCodeTimeout = 10\ninitScore = 0\nlogPostOnly = true\norigin =\nenableGzip = true\nldapServerPort = 10389\nlogConfig = {\"adapter\":\"file\", \"filename\": \"logs/casdoor.log\", \"maxdays\":99999, \"perm\":\"0770\"}\n"
+    kind: ConfigMap
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor-config
