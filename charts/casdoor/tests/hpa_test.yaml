@@ -1,0 +1,31 @@
+suite: test hpa
+templates:
+- hpa.yaml
+
+tests:
+- it: should not render when disabled
+  asserts:
+  - hasDocuments:
+      count: 0
+
+- it: should render with default values when enabled
+  set:
+    autoscaling.enabled: true
+  asserts:
+  - matchSnapshot: {}
+
+- it: should set custom hpa values
+  set:
+    autoscaling.enabled: true
+    autoscaling.minReplicas: 2
+    autoscaling.maxReplicas: 10
+    autoscaling.targetCPUUtilizationPercentage: 90
+  asserts:
+  - matchSnapshot: {}
+
+- it: should add memory utilization
+  set:
+    autoscaling.enabled: true
+    autoscaling.targetMemoryUtilizationPercentage: 75
+  asserts:
+  - matchSnapshot: {}

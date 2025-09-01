@@ -1,0 +1,33 @@
+suite: test service
+templates:
+- service.yaml
+
+tests:
+- it: should render with default values
+  asserts:
+  - matchSnapshot: {}
+
+- it: should set service type to NodePort
+  set:
+    service.type: NodePort
+  asserts:
+  - matchSnapshot: {}
+
+- it: should enable ldap port
+  set:
+    ldap.enabled: true
+  asserts:
+  - matchSnapshot: {}
+
+- it: should set custom service port
+  set:
+    service.port: 7979
+  asserts:
+  - matchSnapshot: {}
+
+- it: should set nodePort when service type is NodePort
+  set:
+    service.type: NodePort
+    service.nodePort: 30000
+  asserts:
+  - matchSnapshot: {}
