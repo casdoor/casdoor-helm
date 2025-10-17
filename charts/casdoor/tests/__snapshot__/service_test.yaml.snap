@@ -1,0 +1,115 @@
+should enable ldap port:
+  1: |
+    apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor
+    spec:
+      ports:
+        - name: http
+          port: 8000
+          protocol: TCP
+          targetPort: http
+        - name: ldap
+          port: 389
+          protocol: TCP
+          targetPort: 10389
+      selector:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/name: casdoor
+      type: ClusterIP
+should render with default values:
+  1: |
+    apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor
+    spec:
+      ports:
+        - name: http
+          port: 8000
+          protocol: TCP
+          targetPort: http
+      selector:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/name: casdoor
+      type: ClusterIP
+should set custom service port:
+  1: |
+    apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor
+    spec:
+      ports:
+        - name: http
+          port: 7979
+          protocol: TCP
+          targetPort: http
+      selector:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/name: casdoor
+      type: ClusterIP
+should set nodePort when service type is NodePort:
+  1: |
+    apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor
+    spec:
+      ports:
+        - name: http
+          nodePort: 30000
+          port: 8000
+          protocol: TCP
+          targetPort: http
+      selector:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/name: casdoor
+      type: NodePort
+should set service type to NodePort:
+  1: |
+    apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: casdoor
+        app.kubernetes.io/version: v1.976.0
+        helm.sh/chart: casdoor-helm-charts-v1.976.0
+      name: RELEASE-NAME-casdoor
+    spec:
+      ports:
+        - name: http
+          port: 8000
+          protocol: TCP
+          targetPort: http
+      selector:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/name: casdoor
+      type: NodePort
