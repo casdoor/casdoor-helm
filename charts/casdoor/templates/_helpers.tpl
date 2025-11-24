@@ -83,7 +83,9 @@ Create dbName used in the configmap
 {{- if eq .Values.database.driver "mysql" -}}
 {{ .Values.database.databaseName }}
 {{- else if eq .Values.database.driver "postgres" -}}
+{{ .Values.database.databaseName }}
 {{- else if eq .Values.database.driver "cockroachdb" -}}
+{{ .Values.database.databaseName }}
 {{- else -}}
 {{ .Values.database.databaseName }}
 {{- end }}
