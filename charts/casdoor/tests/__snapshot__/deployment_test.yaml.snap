@@ -6,23 +6,23 @@ has extraVolume and extraVolumeMounts:
       labels:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
-        app.kubernetes.io/name: casdoor-helm-charts
+        app.kubernetes.io/name: casdoor
         app.kubernetes.io/version: 1.2.3
         helm.sh/chart: casdoor-helm-charts-1.0.0
-      name: RELEASE-NAME-casdoor-helm-charts
+      name: RELEASE-NAME-casdoor
     spec:
       replicas: 1
       selector:
         matchLabels:
           app.kubernetes.io/instance: RELEASE-NAME
-          app.kubernetes.io/name: casdoor-helm-charts
+          app.kubernetes.io/name: casdoor
       template:
         metadata:
           annotations:
-            checksum/config: 529bc7ea51d30d00fefc46d24be7446d0637939827bccc1c3f03755f70059470
+            checksum/config: 30da232af74c6bcdbfb47b671168ed266d93e4e70fefc069867b171d5bc88a87
           labels:
             app.kubernetes.io/instance: RELEASE-NAME
-            app.kubernetes.io/name: casdoor-helm-charts
+            app.kubernetes.io/name: casdoor
         spec:
           containers:
             - env:
@@ -51,7 +51,7 @@ has extraVolume and extraVolumeMounts:
                 - mountPath: /extra-volume
                   name: extra-volume
           securityContext: {}
-          serviceAccountName: RELEASE-NAME-casdoor-helm-charts
+          serviceAccountName: RELEASE-NAME-casdoor
           volumes:
             - name: config-volume
               projected:
@@ -61,7 +61,7 @@ has extraVolume and extraVolumeMounts:
                       items:
                         - key: app.conf
                           path: app.conf
-                      name: RELEASE-NAME-casdoor-helm-charts-config
+                      name: RELEASE-NAME-casdoor-config
             - emptyDir: {}
               name: extra-volume
 manifest should match snapshot:
@@ -72,23 +72,23 @@ manifest should match snapshot:
       labels:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
-        app.kubernetes.io/name: casdoor-helm-charts
+        app.kubernetes.io/name: casdoor
         app.kubernetes.io/version: 1.2.3
         helm.sh/chart: casdoor-helm-charts-1.0.0
-      name: RELEASE-NAME-casdoor-helm-charts
+      name: RELEASE-NAME-casdoor
     spec:
       replicas: 1
       selector:
         matchLabels:
           app.kubernetes.io/instance: RELEASE-NAME
-          app.kubernetes.io/name: casdoor-helm-charts
+          app.kubernetes.io/name: casdoor
       template:
         metadata:
           annotations:
-            checksum/config: 529bc7ea51d30d00fefc46d24be7446d0637939827bccc1c3f03755f70059470
+            checksum/config: 30da232af74c6bcdbfb47b671168ed266d93e4e70fefc069867b171d5bc88a87
           labels:
             app.kubernetes.io/instance: RELEASE-NAME
-            app.kubernetes.io/name: casdoor-helm-charts
+            app.kubernetes.io/name: casdoor
         spec:
           containers:
             - env:
@@ -115,7 +115,7 @@ manifest should match snapshot:
                 - mountPath: /conf
                   name: config-volume
           securityContext: {}
-          serviceAccountName: RELEASE-NAME-casdoor-helm-charts
+          serviceAccountName: RELEASE-NAME-casdoor
           volumes:
             - name: config-volume
               projected:
@@ -125,4 +125,4 @@ manifest should match snapshot:
                       items:
                         - key: app.conf
                           path: app.conf
-                      name: RELEASE-NAME-casdoor-helm-charts-config
+                      name: RELEASE-NAME-casdoor-config
