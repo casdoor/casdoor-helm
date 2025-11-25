@@ -7,8 +7,8 @@ should add extra volumes and mounts (sqlite):
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: casdoor
-        app.kubernetes.io/version: v1.976.0
-        helm.sh/chart: casdoor-helm-charts-v1.976.0
+        app.kubernetes.io/version: 1.2.3
+        helm.sh/chart: casdoor-helm-charts-1.0.0
       name: RELEASE-NAME-casdoor
     spec:
       replicas: 1
@@ -19,7 +19,7 @@ should add extra volumes and mounts (sqlite):
       template:
         metadata:
           annotations:
-            checksum/config: 57b0042bfacc75c1183fd953e239e821fdb863dd570ba84cc554cf5a7e854a2e
+            checksum/config: 30da232af74c6bcdbfb47b671168ed266d93e4e70fefc069867b171d5bc88a87
           labels:
             app.kubernetes.io/instance: RELEASE-NAME
             app.kubernetes.io/name: casdoor
@@ -83,8 +83,8 @@ should disable probes (sqlite):
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: casdoor
-        app.kubernetes.io/version: v1.976.0
-        helm.sh/chart: casdoor-helm-charts-v1.976.0
+        app.kubernetes.io/version: 1.2.3
+        helm.sh/chart: casdoor-helm-charts-1.0.0
       name: RELEASE-NAME-casdoor
     spec:
       replicas: 1
@@ -95,7 +95,7 @@ should disable probes (sqlite):
       template:
         metadata:
           annotations:
-            checksum/config: 57b0042bfacc75c1183fd953e239e821fdb863dd570ba84cc554cf5a7e854a2e
+            checksum/config: 30da232af74c6bcdbfb47b671168ed266d93e4e70fefc069867b171d5bc88a87
           labels:
             app.kubernetes.io/instance: RELEASE-NAME
             app.kubernetes.io/name: casdoor
