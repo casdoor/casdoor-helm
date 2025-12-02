@@ -178,7 +178,8 @@ priorityClassName: ""
 defaultConfigVolumeEnabled: true
 
 persistence:
-  enabled: false
+  # # Note: persistence must be enabled when using sqlite database driver
+  enabled: true
   # storageClass: ""
   accessModes:
   - ReadWriteOnce
