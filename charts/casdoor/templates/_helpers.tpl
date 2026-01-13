@@ -66,7 +66,7 @@ Normalize database driver name (trim whitespace and convert to lowercase)
 Also maps common aliases to canonical names
 */}}
 {{- define "casdoor.normalizeDriver" -}}
-{{- $normalized := .Values.database.driver | trim | lower -}}
+{{- $normalized := .Values.database.driver | default "sqlite" | trim | lower -}}
 {{- if eq $normalized "postgresql" -}}
 postgres
 {{- else -}}
@@ -94,16 +94,7 @@ file:casdoor.db?cache=shared
 Create dbName used in the configmap
 */}}
 {{- define "casdoor.dbName" -}}
-{{- $driver := include "casdoor.normalizeDriver" . -}}
-{{- if eq $driver "mysql" -}}
 {{ .Values.database.databaseName }}
-{{- else if eq $driver "postgres" -}}
-{{ .Values.database.databaseName }}
-{{- else if eq $driver "cockroachdb" -}}
-{{ .Values.database.databaseName }}
-{{- else -}}
-{{ .Values.database.databaseName }}
-{{- end }}
 {{- end }}
 
 {{/*
