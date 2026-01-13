@@ -63,9 +63,15 @@ Create the name of the service account to use
 
 {{/*
 Normalize database driver name (trim whitespace and convert to lowercase)
+Also maps common aliases to canonical names
 */}}
 {{- define "casdoor.normalizeDriver" -}}
-{{- .Values.database.driver | trim | lower -}}
+{{- $normalized := .Values.database.driver | trim | lower -}}
+{{- if eq $normalized "postgresql" -}}
+postgres
+{{- else -}}
+{{- $normalized -}}
+{{- end -}}
 {{- end }}
 
 {{/*

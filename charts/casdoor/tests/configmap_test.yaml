@@ -72,6 +72,40 @@ tests:
           path: data["app.conf"]
           pattern: 'dataSourceName = "user=testuser password=testpass host=postgresql-host port=5432 dbname=testdb sslmode=disable"'
 
+  - it: should map postgresql alias to postgres
+    set:
+      database:
+        driver: postgresql
+        host: postgresql-host
+        user: testuser
+        databaseName: testdb
+        password: testpass
+        sslMode: disable
+    asserts:
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "driverName = postgres"
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: 'dataSourceName = "user=testuser password=testpass host=postgresql-host port=5432 dbname=testdb sslmode=disable"'
+
+  - it: should map PostgreSQL alias to postgres (uppercase)
+    set:
+      database:
+        driver: PostgreSQL
+        host: postgresql-host
+        user: testuser
+        databaseName: testdb
+        password: testpass
+        sslMode: disable
+    asserts:
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "driverName = postgres"
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: 'dataSourceName = "user=testuser password=testpass host=postgresql-host port=5432 dbname=testdb sslmode=disable"'
+
   # MySQL tests
   - it: should render MySQL configuration with lowercase driver
     set:
