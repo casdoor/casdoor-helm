@@ -1,0 +1,207 @@
+suite: test configmap
+templates:
+  - configmap.yaml
+tests:
+  # PostgreSQL tests
+  - it: should render PostgreSQL configuration with lowercase driver
+    set:
+      database:
+        driver: postgres
+        host: postgresql-host
+        port: 5432
+        user: testuser
+        databaseName: testdb
+        password: testpass
+        sslMode: disable
+    asserts:
+      - equal:
+          path: data["app.conf"]
+          value: |
+            appname = casdoor
+            httpport = 8000
+            runmode = dev
+            SessionOn = true
+            copyrequestbody = true
+            driverName = postgres
+            dataSourceName = "user=testuser password=testpass host=postgresql-host port=5432 dbname=testdb sslmode=disable"
+            dbName = testdb
+            redisEndpoint =
+            defaultStorageProvider =
+            isCloudIntranet = false
+            authState = "casdoor"
+            socks5Proxy = ""
+            verificationCodeTimeout = 10
+            initScore = 0
+            logPostOnly = true
+            origin =
+            enableGzip = true
+            ldapServerPort = 10389
+
+  - it: should normalize PostgreSQL driver name with uppercase
+    set:
+      database:
+        driver: POSTGRES
+        host: postgresql-host
+        port: 5432
+        user: testuser
+        databaseName: testdb
+        password: testpass
+        sslMode: disable
+    asserts:
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "driverName = postgres"
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: 'dataSourceName = "user=testuser password=testpass host=postgresql-host port=5432 dbname=testdb sslmode=disable"'
+
+  - it: should normalize PostgreSQL driver name with mixed case
+    set:
+      database:
+        driver: Postgres
+        host: postgresql-host
+        user: testuser
+        databaseName: testdb
+        password: testpass
+        sslMode: disable
+    asserts:
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "driverName = postgres"
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: 'dataSourceName = "user=testuser password=testpass host=postgresql-host port=5432 dbname=testdb sslmode=disable"'
+
+  # MySQL tests
+  - it: should render MySQL configuration with lowercase driver
+    set:
+      database:
+        driver: mysql
+        host: mysql-host
+        port: 3306
+        user: testuser
+        databaseName: testdb
+        password: testpass
+    asserts:
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "driverName = mysql"
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "dataSourceName = testuser:testpass@tcp\\(mysql-host:3306\\)/"
+
+  - it: should normalize MySQL driver name with uppercase
+    set:
+      database:
+        driver: MYSQL
+        host: mysql-host
+        user: testuser
+        databaseName: testdb
+        password: testpass
+    asserts:
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "driverName = mysql"
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "dataSourceName = testuser:testpass@tcp\\(mysql-host:3306\\)/"
+
+  # CockroachDB tests
+  - it: should render CockroachDB configuration with lowercase driver
+    set:
+      database:
+        driver: cockroachdb
+        host: cockroach-host
+        port: 26257
+        user: testuser
+        databaseName: testdb
+        password: testpass
+        sslMode: disable
+    asserts:
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "driverName = cockroachdb"
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: 'dataSourceName = "user=testuser password=testpass host=cockroach-host port=26257 dbname=testdb sslmode=disable serial_normalization=virtual_sequence"'
+
+  - it: should normalize CockroachDB driver name with mixed case
+    set:
+      database:
+        driver: CockroachDB
+        host: cockroach-host
+        user: testuser
+        databaseName: testdb
+        password: testpass
+        sslMode: disable
+    asserts:
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "driverName = cockroachdb"
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: 'dataSourceName = "user=testuser password=testpass host=cockroach-host port=26257 dbname=testdb sslmode=disable serial_normalization=virtual_sequence"'
+
+  # SQLite tests
+  - it: should render SQLite configuration as default
+    asserts:
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "driverName = sqlite"
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "dataSourceName = file:casdoor.db\\?cache=shared"
+
+  - it: should render SQLite configuration when explicitly set
+    set:
+      database:
+        driver: sqlite
+    asserts:
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "driverName = sqlite"
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "dataSourceName = file:casdoor.db\\?cache=shared"
+
+  # Default port tests
+  - it: should use default PostgreSQL port when not specified
+    set:
+      database:
+        driver: postgres
+        host: postgresql-host
+        user: testuser
+        databaseName: testdb
+        password: testpass
+        sslMode: disable
+    asserts:
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "port=5432"
+
+  - it: should use default MySQL port when not specified
+    set:
+      database:
+        driver: mysql
+        host: mysql-host
+        user: testuser
+        databaseName: testdb
+        password: testpass
+    asserts:
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "mysql-host:3306"
+
+  - it: should use default CockroachDB port when not specified
+    set:
+      database:
+        driver: cockroachdb
+        host: cockroach-host
+        user: testuser
+        databaseName: testdb
+        password: testpass
+        sslMode: disable
+    asserts:
+      - matchRegex:
+          path: data["app.conf"]
+          pattern: "port=26257"

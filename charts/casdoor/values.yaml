@@ -18,7 +18,7 @@ config: |
   runmode = dev
   SessionOn = true
   copyrequestbody = true
-  driverName = {{ .Values.database.driver }}
+  driverName = {{ include "casdoor.normalizeDriver" . }}
   dataSourceName = {{ include "casdoor.dataSourceName" . }}
   dbName = {{ include "casdoor.dbName" . }}
   redisEndpoint =

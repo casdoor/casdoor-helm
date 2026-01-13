@@ -62,14 +62,22 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
+Normalize database driver name (trim whitespace and convert to lowercase)
+*/}}
+{{- define "casdoor.normalizeDriver" -}}
+{{- .Values.database.driver | trim | lower -}}
+{{- end }}
+
+{{/*
 Create dataSourceName used in the configmap
 */}}
 {{- define "casdoor.dataSourceName" -}}
-{{- if eq .Values.database.driver "mysql" -}}
+{{- $driver := include "casdoor.normalizeDriver" . -}}
+{{- if eq $driver "mysql" -}}
 {{ .Values.database.user }}:{{ .Values.database.password }}@tcp({{ .Values.database.host }}:{{ default "3306" .Values.database.port }})/
-{{- else if eq .Values.database.driver "postgres" -}}
+{{- else if eq $driver "postgres" -}}
 "user={{ .Values.database.user }} password={{ .Values.database.password }} host={{ .Values.database.host }} port={{ default "5432" .Values.database.port }} dbname={{ .Values.database.databaseName }} sslmode={{ .Values.database.sslMode }}"
-{{- else if eq .Values.database.driver "cockroachdb" -}}
+{{- else if eq $driver "cockroachdb" -}}
 "user={{ .Values.database.user }} password={{ .Values.database.password }} host={{ .Values.database.host }} port={{ default "26257" .Values.database.port }} dbname={{ .Values.database.databaseName }} sslmode={{ .Values.database.sslMode }} serial_normalization=virtual_sequence"
 {{- else -}}
 file:casdoor.db?cache=shared
@@ -80,11 +88,12 @@ file:casdoor.db?cache=shared
 Create dbName used in the configmap
 */}}
 {{- define "casdoor.dbName" -}}
-{{- if eq .Values.database.driver "mysql" -}}
+{{- $driver := include "casdoor.normalizeDriver" . -}}
+{{- if eq $driver "mysql" -}}
 {{ .Values.database.databaseName }}
-{{- else if eq .Values.database.driver "postgres" -}}
+{{- else if eq $driver "postgres" -}}
 {{ .Values.database.databaseName }}
-{{- else if eq .Values.database.driver "cockroachdb" -}}
+{{- else if eq $driver "cockroachdb" -}}
 {{ .Values.database.databaseName }}
 {{- else -}}
 {{ .Values.database.databaseName }}
