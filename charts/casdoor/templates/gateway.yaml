@@ -1,0 +1,26 @@
+{{- if and .Values.gatewayApi.enabled .Values.gatewayApi.createGateway -}}
+{{- if not .Values.gatewayApi.gateway.gatewayClassName -}}
+{{- fail "gatewayApi.gateway.gatewayClassName is required when gatewayApi.createGateway=true" -}}
+{{- end -}}
+{{- if and .Values.gatewayApi.httpsRedirect.enabled (lt (len .Values.gatewayApi.gateway.listeners) 2) -}}
+{{- fail "gatewayApi.gateway.listeners must include both HTTP and HTTPS listeners when gatewayApi.httpsRedirect.enabled=true" -}}
+{{- end -}}
+{{- $gatewayName := default (include "casdoor.fullname" .) .Values.gatewayApi.gateway.name -}}
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: {{ $gatewayName }}
+  labels:
+    {{- include "casdoor.labels" . | nindent 4 }}
+    {{- with .Values.gatewayApi.gateway.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with .Values.gatewayApi.gateway.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  gatewayClassName: {{ .Values.gatewayApi.gateway.gatewayClassName }}
+  listeners:
+    {{- toYaml .Values.gatewayApi.gateway.listeners | nindent 4 }}
+{{- end }}
