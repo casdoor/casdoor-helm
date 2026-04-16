@@ -141,6 +141,18 @@ gatewayApi:
         allowedRoutes:
           namespaces:
             from: Same
+      # - name: https
+      #   protocol: HTTPS
+      #   port: 443
+      #   hostname: casdoor.example.com
+      #   tls:
+      #     certificateRef:
+      #       group: ''
+      #       name: casdoor-tls
+      #       kind: Secret
+      #   allowedRoutes:
+      #     namespaces:
+      #       from: Same
   # -- List of Gateway parentRefs this route attaches to.
   # At least one entry is required when enabled.
   parentRefs: []

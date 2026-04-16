@@ -33,6 +33,9 @@ spec:
   hostnames:
     {{- toYaml . | nindent 4 }}
   {{- end }}
+  {{- if lt (len .Values.gatewayApi.rules) 1 }}
+  {{- fail "gatewayApi.rules must contain at least one rule when gatewayApi.enabled=true" }}
+  {{- end }}
   rules:
     {{- range .Values.gatewayApi.rules }}
     - {{- with .matches }}
