@@ -109,6 +109,99 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
+# -- Expose the service via Kubernetes Gateway API HTTPRoute.
+# Requires Gateway API CRDs (gateway.networking.k8s.io/v1) and a compatible
+# controller (e.g. Istio, Envoy Gateway, Kong, NGINX Gateway Fabric).
+# See: https://gateway-api.sigs.k8s.io/guides/
+gatewayApi:
+  # -- Enable HTTPRoute resource creation.
+  enabled: false
+  # -- Create a Gateway for this chart when no existing Gateway is available.
+  createGateway: false
+  # -- Annotations to add to the HTTPRoute resource.
+  annotations: {}
+  # -- Labels to add to the HTTPRoute resource (in addition to default chart labels).
+  labels: {}
+  # -- Configure the Gateway resource when gatewayApi.createGateway=true.
+  gateway:
+    # -- Gateway name. Defaults to chart fullname when empty.
+    name: ""
+    # -- GatewayClass used by the created Gateway.
+    gatewayClassName: ""
+    # -- Annotations to add to the created Gateway.
+    annotations: {}
+    # -- Labels to add to the created Gateway (in addition to default chart labels).
+    labels: {}
+    # -- Gateway listeners.
+    listeners:
+      - name: http
+        protocol: HTTP
+        port: 80
+        # hostname: casdoor.example.com
+        allowedRoutes:
+          namespaces:
+            from: Same
+      # - name: https
+      #   protocol: HTTPS
+      #   port: 443
+      #   hostname: casdoor.example.com
+      #   tls:
+      #     certificateRef:
+      #       group: ''
+      #       name: casdoor-tls
+      #       kind: Secret
+      #   allowedRoutes:
+      #     namespaces:
+      #       from: Same
+  # -- List of Gateway parentRefs this route attaches to.
+  # At least one entry is required when enabled.
+  parentRefs: []
+    # - name: my-gateway
+    #   namespace: gateway-system
+    #   sectionName: http
+  # -- Optional: list of hostnames to match (Host header).
+  # If omitted, matches all hostnames accepted by the parent Gateway listener.
+  hostnames: []
+    # - casdoor.example.com
+  # -- Routing rules. Each rule can have matches, filters, and backendRefs.
+  # If backendRefs is omitted in a rule, traffic is forwarded to the chart's own Service.
+  # -- Routing rules. Each entry supports matches, filters, and backendRefs.
+  # When backendRefs is omitted, traffic is forwarded to the chart's own Service automatically.
+  # At least one rule is required when gatewayApi.enabled=true.
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      # Uncomment to override the default backend (chart's own Service):
+      # backendRefs:
+      #   - name: casdoor
+      #     port: 8000
+      #     weight: 1
+      # Uncomment to add request/response filters (e.g. header rewrites):
+      # filters:
+      #   - type: RequestHeaderModifier
+      #     requestHeaderModifier:
+      #       add:
+      #         - name: X-Forwarded-Proto
+      #           value: https
+  # -- Optional HTTP -> HTTPS redirect route.
+  httpsRedirect:
+    # -- Enable HTTP to HTTPS redirect via a dedicated HTTPRoute.
+    enabled: false
+    # -- HTTP listener sectionName used by the redirect route when createGateway=true.
+    httpListenerName: http
+    # -- HTTPS listener sectionName used by app route when createGateway=true and parentRefs is empty.
+    httpsListenerName: https
+    # -- Optional hostnames for redirect route. Falls back to gatewayApi.hostnames when empty.
+    hostnames: []
+    # -- Redirect response status code.
+    statusCode: 301
+    # -- Override parentRefs for redirect route. If empty, createGateway=true will auto-wire it.
+    parentRefs: []
+      # - name: my-gateway
+      #   sectionName: http
+
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little

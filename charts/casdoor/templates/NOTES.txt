@@ -1,5 +1,17 @@
 1. Get the application URL by running these commands:
-{{- if .Values.ingress.enabled }}
+{{- if .Values.gatewayApi.enabled }}
+{{- if .Values.gatewayApi.hostnames }}
+  {{- $gatewayScheme := "http" }}
+  {{- if and .Values.gatewayApi.httpsRedirect .Values.gatewayApi.httpsRedirect.enabled }}
+  {{- $gatewayScheme = "https" }}
+  {{- end }}
+  {{- range .Values.gatewayApi.hostnames }}
+  {{ $gatewayScheme }}://{{ . }}
+  {{- end }}
+{{- else }}
+  kubectl get httproute --namespace {{ .Release.Namespace }} {{ include "casdoor.fullname" . }} -o jsonpath='{.spec.parentRefs[0].name}'
+{{- end }}
+{{- else if .Values.ingress.enabled }}
 {{- range $host := .Values.ingress.hosts }}
   {{- range .paths }}
   http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $host.host }}{{ .path }}
