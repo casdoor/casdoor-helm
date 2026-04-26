@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   casdoor-helm-charts:
   - apiVersion: v2
+    appVersion: 3.41.1
+    created: "2026-04-26T03:01:47.647058111Z"
+    description: A Helm chart for Kubernetes
+    digest: 48cc629f1bd3ee6ca3140c96fef479b0aaa0d1708f773d0e90ccaca503a9ae28
+    name: casdoor-helm-charts
+    type: application
+    urls:
+    - oci://registry-1.docker.io/casbin/casdoor-helm-charts-3.41.1.tgz
+    version: 3.41.1
+  - apiVersion: v2
     appVersion: 3.41.0
     created: "2026-04-25T09:10:00.355304192Z"
     description: A Helm chart for Kubernetes
@@ -9821,4 +9831,4 @@ entries:
     urls:
     - oci://registry-1.docker.io/casbin/casdoor-helm-charts-0.4.3.tgz
     version: 0.4.3
-generated: "2026-04-25T09:10:00.353418207Z"
+generated: "2026-04-26T03:01:47.6451225Z"
