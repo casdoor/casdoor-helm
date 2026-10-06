@@ -1,8 +1,9 @@
 # Casdoor Helm Chart
 
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/casdoor)](https://artifacthub.io/packages/helm/casdoor/casdoor-helm-charts)
+> [!WARNING]
+> **This repository is deprecated and no longer maintained.** The chart has moved to [`manifests/casdoor`](https://github.com/casdoor/casdoor/tree/master/manifests/casdoor) in the main [casdoor/casdoor](https://github.com/casdoor/casdoor) repository and is published with every Casdoor release. The chart files below stopped at 4.1.0; please open issues and pull requests in [casdoor/casdoor](https://github.com/casdoor/casdoor) instead. For installation, see the official guide: <https://casdoor.ai/docs/basic/try-with-helm>
 
-[Casdoor](https://casdoor.org) is an open-source Identity and Access Management (IAM) platform supporting OAuth 2.0, OIDC, SAML, and LDAP. This repository provides the official Helm chart for deploying Casdoor on Kubernetes.
+[Casdoor](https://casdoor.org) is an open-source Identity and Access Management (IAM) platform supporting OAuth 2.0, OIDC, SAML, and LDAP. This repository used to host the Helm chart for deploying Casdoor on Kubernetes.
 
 Official documentation: <https://casdoor.org/docs/basic/try-with-helm>
 
